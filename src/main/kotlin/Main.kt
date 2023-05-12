@@ -35,6 +35,7 @@ fun App() {
             var usuario by remember { mutableStateOf("") }
             var contraseña by remember { mutableStateOf("") }
             var ic by remember { mutableStateOf(false) }
+            var contadorclicks=0
             MaterialTheme {
                 Column(
                     modifier = Modifier
@@ -58,12 +59,12 @@ fun App() {
                     )
                     Button(onClick = { ic = iniciarsesion(usuario,contraseña) }) {
                         Text("Iniciar")
+                        contadorclicks++
+
                     }
-                    if (ic==false) {
+                    if (contadorclicks>0 && ic==false) {
                         Text("Error")
                     }
-
-
                 }
 
             }
@@ -96,7 +97,3 @@ fun iniciarsesion(nombre: String, contrasena: String): Boolean {
     conn.close()
     return resultado
 }
-
-
-
-
